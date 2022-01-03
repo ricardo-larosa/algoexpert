@@ -12,30 +12,26 @@ func BranchSums1(root *BinaryTree) []int {
 	// Initialization
 	values := make([]int, 0)
 	// Define Breadth First Search
-	bfs := func() []int {
-		stack := []*BinaryTree{root}
-		explored := make(map[*BinaryTree]bool)
-		for len(stack) > 0 {
-			node := stack[len(stack)-1]
-			stack = stack[:len(stack)-1] //pop
-			if !explored[node] {
-				explored[node] = true
-				for _, child := range []*BinaryTree{node.Right, node.Left} { // reverse order because of the append
-					if child != nil {
-						child.Value += node.Value
-						stack = append(stack, child)
-					}
+	stack := []*BinaryTree{root}
+	explored := make(map[*BinaryTree]bool)
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1] //pop
+		if !explored[node] {
+			explored[node] = true
+			for _, child := range []*BinaryTree{node.Right, node.Left} { // reverse order because of the append
+				if child != nil {
+					child.Value += node.Value
+					stack = append(stack, child)
 				}
 			}
-			if node.Left == nil && node.Right == nil { // If leaf
-				values = append(values, node.Value)
-			}
 		}
-
-		return values
+		if node.Left == nil && node.Right == nil { // If leaf
+			values = append(values, node.Value)
+		}
 	}
 
-	return bfs()
+	return values
 }
 
 // Recursive:
