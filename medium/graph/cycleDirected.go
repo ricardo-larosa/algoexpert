@@ -5,7 +5,6 @@ func CycleInGraph(edges [][]int) bool {
 	var time int
 	explored := map[int]bool{}
 	finish := map[int]int{}
-
 	annotatedDfs = func(v int) bool {
 		explored[v] = true
 		for _, u := range edges[v] {
@@ -27,10 +26,8 @@ func CycleInGraph(edges [][]int) bool {
 	}
 
 	for i := range edges {
-		if !explored[i] {
-			if annotatedDfs(i) {
-				return true
-			}
+		if !explored[i] && annotatedDfs(i) {
+			return true
 		}
 	}
 
