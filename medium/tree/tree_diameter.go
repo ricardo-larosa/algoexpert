@@ -103,6 +103,32 @@ func BinaryTreeDiameter2(tree *BinaryTree) int {
 	return diameter
 }
 
+// Running Time: O(N^2)
+func BinaryTreeDiameter(tree *BinaryTree) int {
+	var diameter int
+	var height func(*BinaryTree, int) int
+	var d func(*BinaryTree)
+	height = func(node *BinaryTree, depth int) int {
+		if node == nil {
+			return 0
+		}
+		return max(height(node.Left, depth), height(node.Right, depth)) + 1 //+1 go up
+	}
+
+	d = func(node *BinaryTree) {
+		if node == nil {
+			return
+		}
+		diameter = max(diameter, height(node.Left, 0)+height(node.Right, 0))
+		d(node.Left)
+		d(node.Right)
+	}
+
+	d(tree)
+
+	return diameter
+}
+
 func max(a, b int) int {
 	if a > b {
 		return a
