@@ -1,11 +1,4 @@
-package graph
-
-type BinaryTree struct {
-	Value int
-
-	Left  *BinaryTree
-	Right *BinaryTree
-}
+package tree
 
 // Running Time: O(N); Space: O(N); where N= number of nodes
 func BinaryTreeDiameter0(s *BinaryTree) int {

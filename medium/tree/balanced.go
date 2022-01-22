@@ -1,4 +1,5 @@
-// This is an input class. Do not edit.
+package tree
+
 type BinaryTree struct {
 	Value int
 
@@ -46,12 +47,6 @@ func HeightBalancedBinaryTree1(root *BinaryTree) bool {
 	return balanced
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
 func abs(a, b int) int {
 	if a < b {
 		return b - a
