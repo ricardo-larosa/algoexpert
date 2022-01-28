@@ -5,7 +5,7 @@ type Pair struct {
 }
 
 var direction = []Pair{{0, 1}, {1, 0}, {0, -1}, {-1, 0}} // direction vector
-
+// Time: O(N*M); Space: O(N*M)
 func RemoveIslands0(matrix [][]int) [][]int {
 	n, m := len(matrix), len(matrix[0])
 	var dfsBorder func(Pair, bool) ([]Pair, bool) // returns a list of Pairs if borderless
