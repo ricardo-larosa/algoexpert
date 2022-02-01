@@ -2,9 +2,8 @@ package graph
 
 func CycleInGraph(edges [][]int) bool {
 	var annotatedDfs func(int) bool
-	var time int
 	explored := map[int]bool{}
-	finish := map[int]int{}
+	finished := map[int]bool{}
 	annotatedDfs = func(v int) bool {
 		explored[v] = true
 		for _, u := range edges[v] {
@@ -12,15 +11,11 @@ func CycleInGraph(edges [][]int) bool {
 				if annotatedDfs(u) {
 					return true
 				}
-			} else { // already visited
-				_, ok := finish[u] // detect back-edge
-				if !ok {
-					return true
-				}
+			} else if !finished[u] { // detect back edge: visited && !finished
+				return true
 			}
 		}
-		time++
-		finish[v] = time
+		finished[v] = true
 
 		return false
 	}
